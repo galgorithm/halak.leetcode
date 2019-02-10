@@ -1,8 +1,8 @@
-﻿partial class Solution 
+﻿partial class Solution
 {
-    public int EvalRPN(string[] tokens) 
+    public int EvalRPN(string[] tokens)
     {
-        var culture = System.Globalization.CultureInfo.InvariantCulture;
+        var nfi = System.Globalization.NumberFormatInfo.InvariantInfo;
         var stack = new System.Collections.Generic.Stack<int>(tokens.Length);
         foreach (var token in tokens)
         {
@@ -18,7 +18,7 @@
                 }
             }
             else
-                stack.Push(int.Parse(token, System.Globalization.NumberStyles.Integer, culture));
+                stack.Push(int.Parse(token, System.Globalization.NumberStyles.Integer, nfi));
         }
 
         return stack.Peek();
