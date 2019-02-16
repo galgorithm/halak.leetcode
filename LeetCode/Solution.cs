@@ -1,11 +1,12 @@
 ﻿using System;
 using System.IO;
+using NUnit.Framework;
 
 partial class Solution
 {
 }
 
-[NUnit.Framework.TestFixture]
+[TestFixture]
 partial class Tests
 {
     static string ProjectPath
