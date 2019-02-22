@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using NUnit.Framework;
 
 partial class Solution
@@ -35,6 +37,34 @@ partial class Tests
                 }
             }
         }
+    }
+
+    static T[][] Sorted<T>(IList<IList<T>> source)
+    {
+        var comparer = Comparer<T>.Default;
+        var array = new T[source.Count][];
+        for (var i = 0; i < source.Count; i++)
+        {
+            array[i] = source[i].ToArray();
+            Array.Sort(array[i], comparer);
+        }
+        Array.Sort(array, (x, y) => 
+        {
+            if (x.Length != y.Length)
+                return x.Length.CompareTo(y.Length);
+            else
+            {
+                for (var i = 0; i < x.Length; i++)
+                {
+                    var result = comparer.Compare(x[i], y[i]);
+                    if (result != 0)
+                        return result;
+                }
+
+                return 0;
+            }
+        });
+        return array;
     }
 
     static string[] ReadAllLines(string name) => File.ReadAllLines(Path.Combine(ProjectPath, name));
