@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-partial class Solution
+﻿partial class Solution
 {
     public int RomanToInt(string s)
     {

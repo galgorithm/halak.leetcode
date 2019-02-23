@@ -2,9 +2,9 @@
 {
     public bool ValidPalindrome(string s)
     {
-        return Test(0, s.Length - 1);
+        return Invoke(0, s.Length - 1);
 
-        bool Test(int leftIndex, int rightIndex, int chance = 1)
+        bool Invoke(int leftIndex, int rightIndex, int chance = 1)
         {
             while (leftIndex < rightIndex)
             {
@@ -16,8 +16,8 @@
                 else
                 {
                     return chance > 0 && (
-                        Test(leftIndex + 1, rightIndex, chance - 1) ||
-                        Test(leftIndex, rightIndex - 1, chance - 1));
+                        Invoke(leftIndex + 1, rightIndex, chance - 1) ||
+                        Invoke(leftIndex, rightIndex - 1, chance - 1));
                 }
             }
 

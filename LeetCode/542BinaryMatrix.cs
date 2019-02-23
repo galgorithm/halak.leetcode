@@ -80,7 +80,7 @@ partial class Tests
     {
         get
         {
-            yield return new NUnit.Framework.TestCaseData((object)new[,]
+            yield return new NUnit.Framework.TestCaseData(new[,]
             {
                 { 0, 0, 0 },
                 { 0, 1, 0 },
@@ -92,7 +92,7 @@ partial class Tests
                 { 1, 2, 1 },
             });
 
-            yield return new NUnit.Framework.TestCaseData((object)new[,]
+            yield return new NUnit.Framework.TestCaseData(new[,]
             {
                 { 0 },
                 { 0 },

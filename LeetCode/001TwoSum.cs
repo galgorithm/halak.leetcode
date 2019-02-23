@@ -5,18 +5,20 @@ partial class Solution
 {
     public int[] TwoSum(int[] nums, int target)
     {
+        var comparer = Comparer<int>.Default;
+
         var indexes = new int[nums.Length];
         for (var i = 0; i < indexes.Length; i++)
             indexes[i] = i;
-        Array.Sort(nums, indexes, int32Comparer);
+        Array.Sort(nums, indexes, comparer);
 
-        var minIndex = Array.BinarySearch(nums, target - nums[nums.Length - 1], int32Comparer);
+        var minIndex = Array.BinarySearch(nums, target - nums[nums.Length - 1], comparer);
         if (minIndex < 0)
             minIndex = ~minIndex;
         else
             return new[] { indexes[nums.Length - 1], indexes[minIndex] };
 
-        var maxIndex = Array.BinarySearch(nums, target - nums[0], int32Comparer);
+        var maxIndex = Array.BinarySearch(nums, target - nums[0], comparer);
         if (maxIndex < 0)
             maxIndex = ~maxIndex;
         else
@@ -24,15 +26,13 @@ partial class Solution
 
         for (var i = minIndex; i < maxIndex; i++)
         {
-            var k = Array.BinarySearch(nums, i + 1, maxIndex - i - 1, target - nums[i], int32Comparer);
+            var k = Array.BinarySearch(nums, i + 1, maxIndex - i - 1, target - nums[i], comparer);
             if (k >= 0)
                 return new[] { indexes[i], indexes[k] };
         }
 
         return null;
     }
-
-    private static readonly IComparer<int> int32Comparer = Comparer<int>.Default;
 }
 
 partial class Tests

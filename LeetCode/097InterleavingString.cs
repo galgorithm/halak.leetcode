@@ -2,9 +2,9 @@
 {
     public bool IsInterleave(string s1, string s2, string s3)
     {
-        return s1.Length + s2.Length == s3.Length && IsInterleave(0, 0, new bool[s1.Length + 1, s2.Length + 1]);
+        return s1.Length + s2.Length == s3.Length && Invoke(0, 0, new bool[s1.Length + 1, s2.Length + 1]);
 
-        bool IsInterleave(int i, int k, bool[,] deadRouteCache)
+        bool Invoke(int i, int k, bool[,] deadRouteCache)
         {
             while (i < s1.Length && k < s2.Length)
             {
@@ -14,7 +14,7 @@
                 var c = s3[i + k];
                 if (s1[i] == c && s2[k] == c)
                 {
-                    if (IsInterleave(i + 1, k, deadRouteCache) || IsInterleave(i, k + 1, deadRouteCache))
+                    if (Invoke(i + 1, k, deadRouteCache) || Invoke(i, k + 1, deadRouteCache))
                         return true;
                     else
                     {

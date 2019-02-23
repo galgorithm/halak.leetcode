@@ -52,33 +52,98 @@ partial class Tests
         throw new InvalidOperationException();
     }
 
-    static T[][] Sorted<T>(IList<IList<T>> source)
+    static object Unordered1D<T>(IList<T> source)
     {
-        var comparer = Comparer<T>.Default;
-        var array = new T[source.Count][];
-        for (var i = 0; i < source.Count; i++)
-        {
-            array[i] = source[i].ToArray();
-            Array.Sort(array[i], comparer);
-        }
-        Array.Sort(array, (x, y) =>
-        {
-            if (x.Length != y.Length)
-                return x.Length.CompareTo(y.Length);
-            else
-            {
-                for (var i = 0; i < x.Length; i++)
-                {
-                    var result = comparer.Compare(x[i], y[i]);
-                    if (result != 0)
-                        return result;
-                }
+        return Internal.CreateEquatable(source, UnorderedEqual);
 
-                return 0;
+        bool UnorderedEqual(IList<T> left, IList<T> right)
+        {
+            if (left.Count != right.Count)
+                return false;
+
+            var comparer = Comparer<T>.Default;
+            return left.OrderBy(it => it, comparer).SequenceEqual(
+                right.OrderBy(it => it, comparer),
+                EqualityComparer<T>.Default);
+        }
+    }
+
+    static object Unordered2D<T>(IList<IList<T>> source)
+    {
+        return Internal.CreateEquatable(source, UnorderedEqual);
+
+        bool UnorderedEqual(IList<IList<T>> left, IList<IList<T>> right)
+        {
+            if (left.Count != right.Count)
+                return false;
+
+            var comparer = Comparer<T>.Default;
+            var equalityComparer = EqualityComparer<T>.Default;
+            var x = Internal.Sorted(left, comparer);
+            var y = Internal.Sorted(right, comparer);
+            for (var i = 0; i < x.Length; i++)
+            {
+                if (x[i].SequenceEqual(y[i], equalityComparer) == false)
+                    return false;
             }
-        });
-        return array;
+
+            return true;
+        }
     }
 
     static string[] ReadAllLines(string name) => File.ReadAllLines(Path.Combine(ProjectPath, name));
+
+    private static class Internal
+    {
+        public static T[][] Sorted<T>(IList<IList<T>> source, IComparer<T> comparer)
+        {
+            comparer = comparer ?? Comparer<T>.Default;
+
+            var array = new T[source.Count][];
+            for (var i = 0; i < source.Count; i++)
+            {
+                array[i] = source[i].ToArray();
+                Array.Sort(array[i], comparer);
+            }
+
+            Array.Sort(array, (x, y) =>
+            {
+                if (x.Length != y.Length)
+                    return x.Length.CompareTo(y.Length);
+                else
+                {
+                    for (var i = 0; i < x.Length; i++)
+                    {
+                        var result = comparer.Compare(x[i], y[i]);
+                        if (result != 0)
+                            return result;
+                    }
+
+                    return 0;
+                }
+            });
+
+            return array;
+        }
+
+        public static IEquatable<T> CreateEquatable<T>(T obj, Func<T, T, bool> comparer)
+            => new EquatableObject<T>(obj, comparer);
+
+        private sealed class EquatableObject<T> : IEquatable<T>
+        {
+            private readonly T obj;
+            private readonly Func<T, T, bool> comparer;
+
+            public EquatableObject(T obj, Func<T, T, bool> comparer)
+            {
+                this.obj = obj;
+                this.comparer = comparer;
+            }
+
+            public bool Equals(T other) => comparer.Invoke(obj, other);
+            public override bool Equals(object obj) => obj is T other && Equals(other);
+            public override int GetHashCode() => obj?.GetHashCode() ?? 0;
+            public override string ToString() => obj?.ToString() ?? string.Empty;
+        }
+    }
 }
