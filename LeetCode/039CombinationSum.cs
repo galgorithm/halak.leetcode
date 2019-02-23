@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 partial class Solution
 {
-    public IList<IList<int>> CombinationSum(int[] candidates, int target) 
+    public IList<IList<int>> CombinationSum(int[] candidates, int target)
     {
         Array.Sort(candidates);
 
@@ -48,27 +48,26 @@ partial class Tests
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/combination-sum/")]
     [NUnit.Framework.Explicit]
     [NUnit.Framework.TestCaseSource(nameof(CombinationSumArgs))]
-    public IList<IList<int>> CombinationSum(int[] candidates, int target) 
-        => Sorted(new Solution().CombinationSum(candidates, target));
+    public object CombinationSum(int[] candidates, int target) => InvokeTest();
 
     static System.Collections.IEnumerable CombinationSumArgs
     {
         get
         {
-            yield return new NUnit.Framework.TestCaseData(new [] { 2, 3, 6, 7 }, 7).Returns(Sorted(new [] 
+            yield return new NUnit.Framework.TestCaseData(new [] { 2, 3, 6, 7 }, 7).Returns(Sorted(new []
             {
                 new [] { 7 },
                 new [] { 2, 2, 3 },
             }));
 
-            yield return new NUnit.Framework.TestCaseData(new [] { 2, 3, 5 }, 8).Returns(Sorted(new [] 
+            yield return new NUnit.Framework.TestCaseData(new [] { 2, 3, 5 }, 8).Returns(Sorted(new []
             {
                 new [] { 2, 2, 2, 2 },
                 new [] { 2, 3, 3 },
                 new [] { 3, 5 },
             }));
 
-            yield return new NUnit.Framework.TestCaseData(new [] { 2, 3, 8, 4 }, 6).Returns(Sorted(new [] 
+            yield return new NUnit.Framework.TestCaseData(new [] { 2, 3, 8, 4 }, 6).Returns(Sorted(new []
             {
                 new [] { 2, 2, 2 },
                 new [] { 2, 4 },

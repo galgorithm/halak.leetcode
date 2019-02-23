@@ -92,5 +92,5 @@ partial class Tests
     [NUnit.Framework.TestCase(".1", ExpectedResult = true)]
     [NUnit.Framework.TestCase("3.", ExpectedResult = true)]
     [NUnit.Framework.TestCase("+.8", ExpectedResult = true)]
-    public bool IsNumber(string s) => new Solution().IsNumber(s);
+    public object IsNumber(string s) => InvokeTest();
 }

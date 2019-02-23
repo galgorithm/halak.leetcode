@@ -1,6 +1,6 @@
-﻿partial class Solution 
+﻿partial class Solution
 {
-    public bool ValidPalindrome(string s) 
+    public bool ValidPalindrome(string s)
     {
         return Test(0, s.Length - 1);
 
@@ -16,7 +16,7 @@
                 else
                 {
                     return chance > 0 && (
-                        Test(leftIndex + 1, rightIndex, chance - 1) || 
+                        Test(leftIndex + 1, rightIndex, chance - 1) ||
                         Test(leftIndex, rightIndex - 1, chance - 1));
                 }
             }
@@ -32,5 +32,5 @@ partial class Tests
     [NUnit.Framework.TestCase("aba", ExpectedResult = true)]
     [NUnit.Framework.TestCase("abca" , ExpectedResult = true)]
     [NUnit.Framework.TestCase("abccda" , ExpectedResult = false)]
-    public bool ValidPalindrome(string s) => new Solution().ValidPalindrome(s);
+    public object ValidPalindrome(string s) => InvokeTest();
 }

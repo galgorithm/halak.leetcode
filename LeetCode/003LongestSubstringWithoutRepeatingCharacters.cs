@@ -36,5 +36,5 @@ partial class Tests
     [NUnit.Framework.TestCase("ab", ExpectedResult = 2)]
     [NUnit.Framework.TestCase("dvdf", ExpectedResult = 3)]
     [NUnit.Framework.TestCase("anviaj", ExpectedResult = 5)]
-    public int LengthOfLongestSubstring(string s) => new Solution().LengthOfLongestSubstring(s);
+    public object LengthOfLongestSubstring(string s) => InvokeTest();
 }

@@ -24,32 +24,32 @@ partial class Solution
             var b = enumerator.Current;
             return (a + b) / 2.0;
         }
-    }
 
-    IEnumerable<int> Zip(int[] a, int[] b)
-    {
-        var i = 0;
-        var k = 0;
-        while (i < a.Length && k < b.Length)
+        IEnumerable<int> Zip(int[] a, int[] b)
         {
-            if (a[i] < b[k])
+            var i = 0;
+            var k = 0;
+            while (i < a.Length && k < b.Length)
+            {
+                if (a[i] < b[k])
+                {
+                    yield return a[i++];
+                }
+                else
+                {
+                    yield return b[k++];
+                }
+            }
+
+            while (i < a.Length)
             {
                 yield return a[i++];
             }
-            else
+
+            while (k < b.Length)
             {
                 yield return b[k++];
             }
-        }
-
-        while (i < a.Length)
-        {
-            yield return a[i++];
-        }
-
-        while (k < b.Length)
-        {
-            yield return b[k++];
         }
     }
 }
@@ -59,5 +59,5 @@ partial class Tests
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/median-of-two-sorted-arrays/")]
     [NUnit.Framework.TestCase(new[] { 1, 3 }, new[] { 2 }, ExpectedResult = 2.0)]
     [NUnit.Framework.TestCase(new[] { 1, 2 }, new[] { 3, 4 }, ExpectedResult = 2.5)]
-    public double FindMedianSortedArrays(int[] nums1, int[] nums2) => new Solution().FindMedianSortedArrays(nums1, nums2);
+    public object FindMedianSortedArrays(int[] nums1, int[] nums2) => new Solution().FindMedianSortedArrays(nums1, nums2);
 }

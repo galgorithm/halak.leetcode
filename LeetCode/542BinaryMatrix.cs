@@ -74,7 +74,7 @@ partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/01-matrix/")]
     [NUnit.Framework.TestCaseSource(nameof(UpdateMatrixArgs))]
-    public int[,] UpdateMatrix(int[,] matrix) => new Solution().UpdateMatrix(matrix);
+    public object UpdateMatrix(int[,] matrix) => InvokeTest();
 
     static System.Collections.IEnumerable UpdateMatrixArgs
     {
@@ -82,38 +82,38 @@ partial class Tests
         {
             yield return new NUnit.Framework.TestCaseData((object)new[,]
             {
-                 { 0, 0, 0 },
-                 { 0, 1, 0 },
-                 { 1, 1, 1 },
-             }).Returns(new[,]
+                { 0, 0, 0 },
+                { 0, 1, 0 },
+                { 1, 1, 1 },
+            }).Returns(new[,]
             {
-                 { 0, 0, 0 },
-                 { 0, 1, 0 },
-                 { 1, 2, 1 },
-             });
+                { 0, 0, 0 },
+                { 0, 1, 0 },
+                { 1, 2, 1 },
+            });
 
             yield return new NUnit.Framework.TestCaseData((object)new[,]
             {
-                 { 0 },
-                 { 0 },
-                 { 0 },
-                 { 0 },
-                 { 0 },
-                 { 1 },
-                 { 1 },
-                 { 1 },
-                 { 1 },
+                { 0 },
+                { 0 },
+                { 0 },
+                { 0 },
+                { 0 },
+                { 1 },
+                { 1 },
+                { 1 },
+                { 1 },
              }).Returns(new[,]
             {
-                 { 0 },
-                 { 0 },
-                 { 0 },
-                 { 0 },
-                 { 0 },
-                 { 1 },
-                 { 2 },
-                 { 3 },
-                 { 4 },
+                { 0 },
+                { 0 },
+                { 0 },
+                { 0 },
+                { 0 },
+                { 1 },
+                { 2 },
+                { 3 },
+                { 4 },
              });
         }
     }

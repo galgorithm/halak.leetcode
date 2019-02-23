@@ -39,6 +39,19 @@ partial class Tests
         }
     }
 
+    static object InvokeTest()
+    {
+        var currentTest = TestContext.CurrentContext?.Test;
+        if (currentTest != null)
+        {
+            var solution = new Solution();
+            var method = solution.GetType().GetMethod(currentTest.MethodName);
+            return method.Invoke(solution, currentTest.Arguments);
+        }
+
+        throw new InvalidOperationException();
+    }
+
     static T[][] Sorted<T>(IList<IList<T>> source)
     {
         var comparer = Comparer<T>.Default;
@@ -48,7 +61,7 @@ partial class Tests
             array[i] = source[i].ToArray();
             Array.Sort(array[i], comparer);
         }
-        Array.Sort(array, (x, y) => 
+        Array.Sort(array, (x, y) =>
         {
             if (x.Length != y.Length)
                 return x.Length.CompareTo(y.Length);

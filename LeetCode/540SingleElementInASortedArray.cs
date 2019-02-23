@@ -28,7 +28,7 @@ partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/single-element-in-a-sorted-array/")]
     [NUnit.Framework.TestCaseSource(nameof(SingleNonDuplicateArgs))]
-    public int SingleNonDuplicate(int[] nums) => new Solution().SingleNonDuplicate(nums);
+    public object SingleNonDuplicate(int[] nums) => InvokeTest();
 
     static System.Collections.IEnumerable SingleNonDuplicateArgs
     {

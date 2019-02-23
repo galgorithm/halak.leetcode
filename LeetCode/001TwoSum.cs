@@ -39,5 +39,5 @@ partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/two-sum/")]
     [NUnit.Framework.TestCase(new[] { 2, 7, 11, 15 }, 9, ExpectedResult = new[] { 0, 1 })]
-    public int[] TwoSum(int[] nums, int target) => new Solution().TwoSum(nums, target);
+    public object TwoSum(int[] nums, int target) => InvokeTest();
 }

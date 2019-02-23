@@ -36,7 +36,7 @@ partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/evaluate-reverse-polish-notation/")]
     [NUnit.Framework.TestCaseSource(nameof(EvalRPNArgs))]
-    public int EvalRPN(string[] tokens) => new Solution().EvalRPN(tokens);
+    public object EvalRPN(string[] tokens) => InvokeTest();
 
     static System.Collections.IEnumerable EvalRPNArgs
     {

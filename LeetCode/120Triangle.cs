@@ -44,19 +44,19 @@ partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/triangle/")]
     [NUnit.Framework.TestCaseSource(nameof(MinimumTotalArgs))]
-    public int MinimumTotal(string name, IList<IList<int>> triangle) => new Solution().MinimumTotal(triangle);
+    public object MinimumTotal(IList<IList<int>> triangle) => InvokeTest();
 
     static System.Collections.IEnumerable MinimumTotalArgs
     {
         get
         {
-            yield return new NUnit.Framework.TestCaseData("A", new int[][]
+            yield return new NUnit.Framework.TestCaseData((object)new int[][]
             {
                 new [] { 2 },
                 new [] { 3, 4 },
                 new [] { 6, 5, 7 },
                 new [] { 4, 1, 8, 3 },
-            }).Returns(11);
+            }).SetArgDisplayNames("A").Returns(11);
         }
     }
 }

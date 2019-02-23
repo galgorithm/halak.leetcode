@@ -81,36 +81,35 @@ partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/cherry-pickup/")]
     [NUnit.Framework.TestCaseSource(nameof(CherryPickupArgs))]
-    [NUnit.Framework.MaxTime(1000)]
-    public int CherryPickup(string name, int[,] grid) => new Solution().CherryPickup(grid);
+    public object CherryPickup(int[,] grid) => InvokeTest();
 
     static System.Collections.IEnumerable CherryPickupArgs
     {
         get
         {
-            yield return new NUnit.Framework.TestCaseData("A", new int[,]
+            yield return new NUnit.Framework.TestCaseData(new int[,]
             {
                 { 0, 1, -1 },
                 { 1, 0, -1 },
                 { 1, 1, 1 },
-            }).Returns(5);
+            }).SetArgDisplayNames("A").Returns(5);
 
-            yield return new NUnit.Framework.TestCaseData("B", new int[,]
+            yield return new NUnit.Framework.TestCaseData(new int[,]
             {
                 { 0, 1, 0, 1 },
                 { 1, 0, 1, 0 },
                 { 0, 1, 0, 0 },
                 { 1, 0, 0, 0 },
-            }).Returns(4);
+            }).SetArgDisplayNames("B").Returns(4);
 
-            yield return new NUnit.Framework.TestCaseData("C", new int[,]
+            yield return new NUnit.Framework.TestCaseData(new int[,]
             {
                 { 1, 1, -1 },
                 { 1, -1, 1 },
                 { -1, 1, 1 },
-            }).Returns(0);
+            }).SetArgDisplayNames("C").Returns(0);
 
-            yield return new NUnit.Framework.TestCaseData("D", new int[,]
+            yield return new NUnit.Framework.TestCaseData(new int[,]
             {
                 { 1, 1, 1, 1, -1, -1, -1, 1, 0, 0 },
                 { 1, 0, 0, 0, 1, 0, 0, 0, 1, 0 },
@@ -122,9 +121,9 @@ partial class Tests
                 { 1, -1, 0, 1, 0, 0, 0, 1, -1, 1 },
                 { 1, 0, -1, 0, -1, 0, 0, 1, 0, 0 },
                 { 0, 0, -1, 0, 1, 0, 1, 0, 0, 1 },
-            }).Returns(22);
+            }).SetArgDisplayNames("D").Returns(22);
 
-            yield return new NUnit.Framework.TestCaseData("E", new int[,]
+            yield return new NUnit.Framework.TestCaseData(new int[,]
             {
                 { 1, 1, 1, 1, 0, 0, 0 },
                 { 0, 0, 0, 1, 0, 0, 0 },
@@ -133,9 +132,9 @@ partial class Tests
                 { 0, 0, 0, 1, 0, 0, 0 },
                 { 0, 0, 0, 1, 0, 0, 0 },
                 { 0, 0, 0, 1, 1, 1, 1 },
-            }).Returns(15);
+            }).SetArgDisplayNames("E").Returns(15);
 
-            yield return new NUnit.Framework.TestCaseData("F", new int[,]
+            yield return new NUnit.Framework.TestCaseData(new int[,]
             {
                 { +1, -1, +1, +1, +1, +1, +1, +1, -1, +1 },
                 { +1, +1, +1, +1, -1, -1, +1, +1, +1, +1 },
@@ -147,7 +146,7 @@ partial class Tests
                 { +1, +1, +1, +1, -1, +1, -1, -1, +1, +1 },
                 { +1, -1, +1, -1, -1, +1, +1, -1, +1, -1 },
                 { -1, +1, -1, +1, -1, +1, +1, +1, +1, +1 },
-            }).Returns(23);
+            }).SetArgDisplayNames("F").Returns(23);
         }
     }
 }

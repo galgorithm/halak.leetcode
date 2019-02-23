@@ -46,7 +46,7 @@ partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/short-encoding-of-words/")]
     [NUnit.Framework.TestCaseSource(nameof(MinimumLengthEncodingArgs))]
-    public int MinimumLengthEncoding(string[] words) => new Solution().MinimumLengthEncoding(words);
+    public object MinimumLengthEncoding(string[] words) => InvokeTest();
 
     static System.Collections.IEnumerable MinimumLengthEncodingArgs
     {

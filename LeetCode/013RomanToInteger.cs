@@ -13,18 +13,18 @@ partial class Solution
             switch (current)
             {
                 case 'I':
-                    switch (next) 
+                    switch (next)
                     {
                         case 'V': n += 4; i++; break;
                         case 'X': n += 9; i++; break;
                         default: n += 1; break;
                     }
                     break;
-                case 'V': 
+                case 'V':
                     n += 5;
                     break;
                 case 'X':
-                    switch (next) 
+                    switch (next)
                     {
                         case 'L': n += 40; i++; break;
                         case 'C': n += 90; i++; break;
@@ -35,7 +35,7 @@ partial class Solution
                     n += 50;
                     break;
                 case 'C':
-                    switch (next) 
+                    switch (next)
                     {
                         case 'D': n += 400; i++; break;
                         case 'M': n += 900; i++; break;
@@ -50,7 +50,7 @@ partial class Solution
                     break;
             }
         }
-        
+
         return n;
     }
 }
@@ -63,5 +63,5 @@ partial class Tests
     [NUnit.Framework.TestCase("IX", ExpectedResult = 9)]
     [NUnit.Framework.TestCase("LVIII", ExpectedResult = 58)]
     [NUnit.Framework.TestCase("MCMXCIV", ExpectedResult = 1994)]
-    public int RomanToInt(string s) => new Solution().RomanToInt(s);
+    public object RomanToInt(string s) => InvokeTest();
 }
