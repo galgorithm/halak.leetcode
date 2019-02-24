@@ -34,10 +34,10 @@ partial class Tests
     {
         get
         {
-            yield return new NUnit.Framework.TestCaseData((object)new[] { 1, 1, 2, 3, 3, 4, 4, 8, 8 }).Returns(2);
-            yield return new NUnit.Framework.TestCaseData((object)new[] { 3, 3, 7, 7, 10, 11, 11 }).Returns(10);
-            yield return new NUnit.Framework.TestCaseData((object)new[] { 1, 1, 2 }).Returns(2);
-            yield return new NUnit.Framework.TestCaseData((object)new[] { 1, 2, 2 }).Returns(1);
+            yield return new NUnit.Framework.TestCaseData(new[] { 1, 1, 2, 3, 3, 4, 4, 8, 8 }).Returns(2);
+            yield return new NUnit.Framework.TestCaseData(new[] { 3, 3, 7, 7, 10, 11, 11 }).Returns(10);
+            yield return new NUnit.Framework.TestCaseData(new[] { 1, 1, 2 }).Returns(2);
+            yield return new NUnit.Framework.TestCaseData(new[] { 1, 2, 2 }).Returns(1);
         }
     }
 }
