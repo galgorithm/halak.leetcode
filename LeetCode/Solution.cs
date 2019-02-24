@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
@@ -91,7 +92,9 @@ partial class Tests
         }
     }
 
-    static string[] ReadAllLines(string name) => File.ReadAllLines(Path.Combine(ProjectPath, name));
+    static string[] ReadString(string name) => File.ReadAllLines(Path.Combine(ProjectPath, name));
+    static int[] ReadInt32Array(string name) => ReadString(name).Select(Internal.ParseInt32).ToArray();
+    static int[][] ReadInt32Array2D(string name) => ReadString(name).Select(s => Internal.SplitByComma(s).Select(Internal.ParseInt32).ToArray()).ToArray();
 
     private static class Internal
     {
@@ -128,6 +131,9 @@ partial class Tests
 
         public static IEquatable<T> CreateEquatable<T>(T obj, Func<T, T, bool> comparer)
             => new EquatableObject<T>(obj, comparer);
+
+        public static int ParseInt32(string s) => int.Parse(s, CultureInfo.InvariantCulture);
+        public static string[] SplitByComma(string s) => s.Split(',', StringSplitOptions.RemoveEmptyEntries);
 
         private sealed class EquatableObject<T> : IEquatable<T>
         {

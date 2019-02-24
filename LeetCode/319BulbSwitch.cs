@@ -1,45 +1,48 @@
 ﻿partial class Solution
 {
-    public int BulbSwitch(int n)
+    public int BulbSwitch(int x)
     {
-        if (n <= 1)
-            return n;
+        return Sqrt(x);
 
-        var primes = new int[n + 1];
-        primes[0] = 0;
-        primes[1] = 1;
-        var count = 1;
-        for (var i = 2; i <= n; i++)
+        int Sqrt(int n)
         {
-            if (primes[i] != 0)
-                count += CountFactors(i) % 2;
-            else
+            // from hacker's delight
+            if (x <= 1)
+                return x;
+
+            var s = 2;
+            var x1 = x - 1;
+            if (x1 > 65535)
             {
-                for (var k = i; k <= n; k += i)
-                    primes[k] = i;
+                s *= 256;
+                x1 /= 65536;
             }
-        }
 
-        int CountFactors(int x)
-        {
-            var factors = 1;
-            var p = primes[x];
-            do
+            if (x1 > 255)
             {
-                var c = 0;
-                while (x >= p && x % p == 0)
-                {
-                    x /= p;
-                    c++;
-                }
+                s *= 16;
+                x1 /= 256;
+            }
 
-                factors *= (c + 1);
-                p = primes[x];
-            } while (x > 1 && p > 1);
-            return factors;
+            if (x1 > 15)
+            {
+                s *= 4;
+                x1 /= 16;
+            }
+
+            if (x1 > 3)
+                s *= 2;
+
+            var g0 = s;
+            var g1 = (g0 + (x / s)) / 2;
+            while (g1 < g0)
+            {
+                g0 = g1; // strictly decrease.
+                g1 = (g0 + (x / g0)) / 2;
+            }
+
+            return g0;
         }
-
-        return count;
     }
 }
 
