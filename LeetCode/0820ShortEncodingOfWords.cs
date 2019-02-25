@@ -54,7 +54,7 @@ partial class Tests
         {
             yield return new NUnit.Framework.TestCaseData((object)new[] { "time", "me", "bell" }).Returns(10);
             yield return new NUnit.Framework.TestCaseData((object)new[] { "time", "atime", "btime" }).Returns(12);
-            yield return new NUnit.Framework.TestCaseData((object)ReadString("820ShortEncodingOfWords001.txt")).Returns(13964);
+            yield return new NUnit.Framework.TestCaseData((object)ReadString("0820ShortEncodingOfWords001.txt")).Returns(13964);
         }
     }
 }
