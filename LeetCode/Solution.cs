@@ -7,6 +7,7 @@ using NUnit.Framework;
 
 partial class Solution
 {
+    static void Draw(Action<IDebugPainter> handle) => DebugPainters.Draw(handle);
 }
 
 [TestFixture]

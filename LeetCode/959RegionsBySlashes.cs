@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-partial class Solution
+﻿partial class Solution
 {
     public int RegionsBySlashes(string[] grid)
     {
@@ -14,124 +11,109 @@ partial class Solution
         const int NORTH = 6;
         const int NORTHEAST = 7;
 
-        var segments = new Dictionary<(int x, int y), int>(grid.Length * grid.Length);
+        var N = grid.Length;
+        var comparer = System.Collections.Generic.Comparer<(int x, int y, int orientation)>.Default;
+        var segments = new System.Collections.Generic.List<(int x, int y, int orientation)>(N * N * 2);
 
-        var size = grid.Length;
-        for (var d = 0; d < size; d++)
+        for (var d = 0; d < N; d++)
         {
-            AddSegment(d, 0, EAST);
-            AddSegment(size, d, SOUTH);
-            AddSegment(size - d, size, WEST);
-            AddSegment(0, size - d, NORTH);
+            segments.Add((d, 0, EAST));
+            segments.Add((N, d, SOUTH));
+            segments.Add((N - d, N, WEST));
+            segments.Add((0, N - d, NORTH));
         }
 
-        for (var y = 0; y < size; y++) 
+        for (var y = 0; y < N; y++)
         {
-            for (var x = 0; x < size; x++)
+            for (var x = 0; x < N; x++)
             {
                 switch (grid[y][x])
                 {
                     case '/':
-                        AddSegment(x + 1, y + 0, SOUTHWEST);
-                        AddSegment(x + 0, y + 1, NORTHEAST);
+                        segments.Add((x + 1, y + 0, SOUTHWEST));
+                        segments.Add((x + 0, y + 1, NORTHEAST));
                         break;
                     case '\\':
-                        AddSegment(x + 0, y + 0, SOUTHEAST);
-                        AddSegment(x + 1, y + 1, NORTHWEST);
+                        segments.Add((x + 0, y + 0, SOUTHEAST));
+                        segments.Add((x + 1, y + 1, NORTHWEST));
                         break;
                 }
             }
         }
 
+        segments.Sort(comparer);
+
         var regions = 0;
         while (segments.Count > 0)
         {
-            var enumerator = segments.GetEnumerator();
-            enumerator.MoveNext();
-            var item = enumerator.Current;
-            
-            if (Traverse(item.Key, GetAnyDirection(item.Value)))
+            var segment = segments[segments.Count - 1];
+            segments.RemoveAt(segments.Count - 1);
+            if (Traverse(segment))
                 regions++;
         }
 
         return regions;
 
-        int GetAnyDirection(int directions)
+        bool Traverse((int x, int y, int orientation) startSegment)
         {
-            for (var i = 0; i < 8; i++)
+            var currentPoint = GetEndPoint(startSegment);
+            var currentOrientation = startSegment.orientation;
+            var crossProductSum = CrossProduct((startSegment.x, startSegment.y), currentPoint);
+            while (segments.Count > 0)
             {
-                if ((directions & (1 << i)) != 0)
-                    return i;
-            }
-
-            return 0;
-        }
-
-        void AddSegment(int x, int y, int direction)
-        {
-            if (segments.TryGetValue((x, y), out var directions) == false)
-                directions = 0;
-            directions |= (1 << direction);
-            segments[(x, y)] = directions;
-        }
-
-        bool PopSegment(int x, int y, int direction)
-        {
-            if (segments.TryGetValue((x, y), out var directions) && 
-                (directions & (1 << direction)) != 0)
-            {
-                directions &= ~(1 << direction);
-                if (directions != 0)
-                    segments[(x, y)] = directions;
-                else
-                    segments.Remove((x, y));
-                return true;
-            }
-            else
-                return false;
-        }
-
-        bool Traverse((int x, int y) startPosition, int direction)
-        {
-            var current = Step(startPosition, direction);
-            for (;;)
-            {
-                var startDirection = (direction + 4 - 1) % 8; // opposite
-                var stepped = false;
-                for (var i = 0; i < 8; i++)
+                var index = SweepCounterClockwise(currentPoint, (currentOrientation + 4 - 1) % 8);
+                if (index != -1)
                 {
-                    direction = (8 + startDirection - i) % 8;
-                    if (PopSegment(current.x, current.y, direction))
-                    {
-                        current = Step(current, direction);
-                        stepped = true;
-                        if (current  == startPosition)
-                            return true;
+                    var segment = segments[index];
+                    segments.RemoveAt(index);
 
-                        break;
+                    var nextPoint = GetEndPoint(segment);
+                    crossProductSum += CrossProduct((currentPoint.x, currentPoint.y), (nextPoint.x, nextPoint.y));
+                    if (nextPoint.x == startSegment.x && nextPoint.y == startSegment.y)
+                        return crossProductSum > 0; // is clockwise
+                    else
+                    {
+                        currentPoint = nextPoint;
+                        currentOrientation = segment.orientation;
                     }
                 }
-
-                if (stepped == false)
+                else
                     return false;
             }
+
+            return false;
         }
 
-        (int x, int y) Step((int x, int y) position, int direction)
+        int SweepCounterClockwise((int x, int y) point, int startOrientation)
         {
-            switch (direction)
+            for (var i = startOrientation + 8; i > startOrientation; i--)
             {
-                case EAST: return (position.x + 1, position.y);
-                case SOUTHEAST: return (position.x + 1, position.y + 1);
-                case SOUTH: return (position.x, position.y + 1);
-                case SOUTHWEST: return (position.x - 1, position.y + 1);
-                case WEST: return (position.x - 1, position.y);
-                case NORTHWEST: return (position.x - 1, position.y - 1);
-                case NORTH: return (position.x, position.y - 1);
-                case NORTHEAST: return (position.x + 1, position.y - 1);
-                default: return position;
+                var orientation = i % 8;
+                var index = segments.BinarySearch((point.x, point.y, orientation));
+                if (index >= 0)
+                    return index;
+            }
+
+            return -1;
+        }
+
+        (int x, int y) GetEndPoint((int x, int y, int orientation) segment)
+        {
+            switch (segment.orientation)
+            {
+                case EAST: return (segment.x + 1, segment.y);
+                case SOUTHEAST: return (segment.x + 1, segment.y + 1);
+                case SOUTH: return (segment.x, segment.y + 1);
+                case SOUTHWEST: return (segment.x - 1, segment.y + 1);
+                case WEST: return (segment.x - 1, segment.y);
+                case NORTHWEST: return (segment.x - 1, segment.y - 1);
+                case NORTH: return (segment.x, segment.y - 1);
+                case NORTHEAST: return (segment.x + 1, segment.y - 1);
+                default: return (segment.x, segment.y);
             }
         }
+
+        int CrossProduct((int x, int y) p, (int x, int y) q) => (p.x * q.y) - (q.x * p.y);
     }
 }
 
@@ -175,6 +157,36 @@ partial class Tests
                 @"//",
                 @"/ ",
             }).Returns(3);
+
+            yield return new NUnit.Framework.TestCaseData((object)new[]
+            {
+                @"\\\",
+                @" \\",
+                @"\\ ",
+            }).Returns(4);
+
+            yield return new NUnit.Framework.TestCaseData((object)new[]
+            {
+                @"\\  /\",
+                @"\\/\\\",
+                @"/\//\/",
+                @"/\ // ",
+                @"//\\//",
+                @"\//  \",
+            }).Returns(7);
+
+            yield return new NUnit.Framework.TestCaseData((object)new[]
+            {
+                @"\//\/\//\",
+                @"\  /\/ //",
+                @"//\/ /\\ ",
+                @"\\\//\///",
+                @"\//// ///",
+                @"\   / \\\",
+                @"\ /\ /\/\",
+                @"/\\//  \/",
+                @" ///\/\\/",
+            }).Returns(18);
         }
     }
 }
