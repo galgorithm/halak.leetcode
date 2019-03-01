@@ -12,5 +12,5 @@ partial class Tests
     [NUnit.Framework.TestCase(256, ExpectedResult = true)]
     [NUnit.Framework.TestCase(5, ExpectedResult = false)]
     [NUnit.Framework.TestCase(512, ExpectedResult = false)]
-    public object IsPowerOfFour(int n) => InvokeTest();
+    public object IsPowerOfFour(params object[] args) => InvokeTest();
 }

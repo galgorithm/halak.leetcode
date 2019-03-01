@@ -27,17 +27,9 @@
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/single-element-in-a-sorted-array/")]
-    [NUnit.Framework.TestCaseSource(nameof(SingleNonDuplicateArgs))]
-    public object SingleNonDuplicate(int[] nums) => InvokeTest();
-
-    static System.Collections.IEnumerable SingleNonDuplicateArgs
-    {
-        get
-        {
-            yield return new NUnit.Framework.TestCaseData(new[] { 1, 1, 2, 3, 3, 4, 4, 8, 8 }).Returns(2);
-            yield return new NUnit.Framework.TestCaseData(new[] { 3, 3, 7, 7, 10, 11, 11 }).Returns(10);
-            yield return new NUnit.Framework.TestCaseData(new[] { 1, 1, 2 }).Returns(2);
-            yield return new NUnit.Framework.TestCaseData(new[] { 1, 2, 2 }).Returns(1);
-        }
-    }
+    [NUnit.Framework.TestCase(@"[1,1,2,3,3,4,4,8,8]", ExpectedResult = 2)]
+    [NUnit.Framework.TestCase(@"[3,3,7,7,10,11,11]", ExpectedResult = 10)]
+    [NUnit.Framework.TestCase(@"[1,1,2]", ExpectedResult = 2)]
+    [NUnit.Framework.TestCase(@"[1,2,2]", ExpectedResult = 1)]
+    public object SingleNonDuplicate(params object[] args) => InvokeTest();
 }

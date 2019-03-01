@@ -31,12 +31,15 @@ partial class Solution
     }
 }
 
+[Newtonsoft.Json.JsonArray]
 sealed class EraseOverlapIntervalsInterval
 {
     public int start;
     public int end;
     public EraseOverlapIntervalsInterval() { start = 0; end = 0; }
     public EraseOverlapIntervalsInterval(int s, int e) { start = s; end = e; }
+    [Newtonsoft.Json.JsonConstructor]
+    public EraseOverlapIntervalsInterval(System.Collections.Generic.List<object> values) : this(System.Convert.ToInt32(values[0]), System.Convert.ToInt32(values[1])) { }
 
     public override string ToString() => $"[{start}, {end})";
 }
@@ -44,32 +47,10 @@ sealed class EraseOverlapIntervalsInterval
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/non-overlapping-intervals/")]
-    [NUnit.Framework.TestCaseSource(nameof(EraseOverlapIntervalsArgs))]
-    public object EraseOverlapIntervals(Interval[] intervals) => InvokeTest();
-
-    static System.Collections.IEnumerable EraseOverlapIntervalsArgs
-    {
-        get
-        {
-            yield return new NUnit.Framework.TestCaseData((object)new[] { Range(1, 2), Range(2, 3), Range(3, 4), Range(1, 3) })
-                .SetArgDisplayNames("A")
-                .Returns(1);
-            yield return new NUnit.Framework.TestCaseData((object)new[] { Range(1, 2), Range(1, 2), Range(1, 2) })
-                .SetArgDisplayNames("B")
-                .Returns(2);
-            yield return new NUnit.Framework.TestCaseData((object)new[] { Range(1, 2), Range(2, 3) })
-                .SetArgDisplayNames("C")
-                .Returns(0);
-
-            yield return new NUnit.Framework.TestCaseData((object)new[] { Range(1, 2), Range(10, 12), Range(5, 11), Range(11, 15) })
-                .SetArgDisplayNames("D")
-                .Returns(1);
-
-            yield return new NUnit.Framework.TestCaseData((object)ReadInt32Array2D("0435NonOverlappingIntervals001.txt").Select(it => Range(it[0], it[1])).ToArray())
-                .SetArgDisplayNames("E")
-                .Returns(187);
-
-            Interval Range(int start, int end) => new Interval(start, end);
-        }
-    }
+    [NUnit.Framework.TestCase("[[1,2],[2,3],[3,4],[1,3]]", ExpectedResult = 1)]
+    [NUnit.Framework.TestCase("[[1,2],[1,2],[1,2]]", ExpectedResult = 2)]
+    [NUnit.Framework.TestCase("[[1,2],[2,3]]", ExpectedResult = 0)]
+    [NUnit.Framework.TestCase("[[1,2],[10,12],[5,11],[11,15]]", ExpectedResult = 1)]
+    [NUnit.Framework.TestCase("0435NonOverlappingIntervals001.json", ExpectedResult = 187)]
+    public object EraseOverlapIntervals(params object[] args) => InvokeTest();
 }

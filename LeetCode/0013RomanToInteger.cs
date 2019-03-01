@@ -60,5 +60,5 @@ partial class Tests
     [NUnit.Framework.TestCase("IX", ExpectedResult = 9)]
     [NUnit.Framework.TestCase("LVIII", ExpectedResult = 58)]
     [NUnit.Framework.TestCase("MCMXCIV", ExpectedResult = 1994)]
-    public object RomanToInt(string s) => InvokeTest();
+    public object RomanToInt(params object[] args) => InvokeTest();
 }

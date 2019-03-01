@@ -120,73 +120,49 @@
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/regions-cut-by-slashes/")]
-    [NUnit.Framework.TestCaseSource(nameof(RegionsBySlashesArgs))]
-    public object RegionsBySlashes(string[] grid) => InvokeTest();
-
-
-    static System.Collections.IEnumerable RegionsBySlashesArgs
-    {
-        get
-        {
-            yield return new NUnit.Framework.TestCaseData((object)new[]
-            {
-                @" /",
-                @"/ ",
-            }).Returns(2);
-
-            yield return new NUnit.Framework.TestCaseData((object)new[]
-            {
-                @" /",
-                @"  ",
-            }).Returns(1);
-
-            yield return new NUnit.Framework.TestCaseData((object)new[]
-            {
-                @"\/",
-                @"/\",
-            }).Returns(4);
-
-            yield return new NUnit.Framework.TestCaseData((object)new[]
-            {
-                @"/\",
-                @"\/",
-            }).Returns(5);
-
-            yield return new NUnit.Framework.TestCaseData((object)new[]
-            {
-                @"//",
-                @"/ ",
-            }).Returns(3);
-
-            yield return new NUnit.Framework.TestCaseData((object)new[]
-            {
-                @"\\\",
-                @" \\",
-                @"\\ ",
-            }).Returns(4);
-
-            yield return new NUnit.Framework.TestCaseData((object)new[]
-            {
-                @"\\  /\",
-                @"\\/\\\",
-                @"/\//\/",
-                @"/\ // ",
-                @"//\\//",
-                @"\//  \",
-            }).Returns(7);
-
-            yield return new NUnit.Framework.TestCaseData((object)new[]
-            {
-                @"\//\/\//\",
-                @"\  /\/ //",
-                @"//\/ /\\ ",
-                @"\\\//\///",
-                @"\//// ///",
-                @"\   / \\\",
-                @"\ /\ /\/\",
-                @"/\\//  \/",
-                @" ///\/\\/",
-            }).Returns(18);
-        }
-    }
+    [NUnit.Framework.TestCase(@"[
+        "" /"",
+        ""/ ""
+    ]", ExpectedResult = 2)]
+    [NUnit.Framework.TestCase(@"[
+        "" /"",
+        ""  ""
+    ]", ExpectedResult = 1)]
+    [NUnit.Framework.TestCase(@"[
+        ""\\/"",
+        ""/\\""
+    ]", ExpectedResult = 4)]
+    [NUnit.Framework.TestCase(@"[
+        ""/\\"",
+        ""\\/""
+    ]", ExpectedResult = 5)]
+    [NUnit.Framework.TestCase(@"[
+        ""//"",
+        ""/ ""
+    ]", ExpectedResult = 3)]
+    [NUnit.Framework.TestCase(@"[
+        ""\\\\\\"",
+        "" \\\\"",
+        ""\\\\ ""
+    ]", ExpectedResult = 4)]
+    [NUnit.Framework.TestCase(@"[
+        ""\\\\  /\\"",
+        ""\\\\/\\\\\\"",
+        ""/\\//\\/"",
+        ""/\\ // "",
+        ""//\\\\//"",
+        ""\\//  \\""
+    ]", ExpectedResult = 7)]
+    [NUnit.Framework.TestCase(@"[
+        ""\\//\\/\\//\\"",
+        ""\\  /\\/ //"",
+        ""//\\/ /\\\\ "",
+        ""\\\\\\//\\///"",
+        ""\\//// ///"",
+        ""\\   / \\\\\\"",
+        ""\\ /\\ /\\/\\"",
+        ""/\\\\//  \\/"",
+        "" ///\\/\\\\/""
+    ]", ExpectedResult = 18)]
+    public object RegionsBySlashes(params object[] args) => InvokeTest();
 }

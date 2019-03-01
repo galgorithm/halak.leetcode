@@ -18,35 +18,7 @@
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/transpose-matrix/")]
-    [NUnit.Framework.TestCaseSource(nameof(TransposeArgs))]
-    public object Transpose(int[][] A) => InvokeTest();
-
-    static System.Collections.IEnumerable TransposeArgs
-    {
-        get
-        {
-            yield return new NUnit.Framework.TestCaseData((object)new int[][]
-            {
-                new[] {1, 2, 3},
-                new[] {4, 5, 6},
-                new[] {7, 8, 9},
-            }).Returns(new int[][]
-            {
-                new[] {1, 4, 7},
-                new[] {2, 5, 8},
-                new[] {3, 6, 9},
-            });
-
-            yield return new NUnit.Framework.TestCaseData((object)new int[][]
-            {
-                new[] {1, 2, 3},
-                new[] {4, 5, 6},
-            }).Returns(new int[][]
-            {
-                new[] {1, 4},
-                new[] {2, 5},
-                new[] {3, 6},
-            });
-        }
-    }
+    [NUnit.Framework.TestCase("[[1,2,3],[4,5,6],[7,8,9]]", ExpectedResult = "[[1,4,7],[2,5,8],[3,6,9]]")]
+    [NUnit.Framework.TestCase("[[1,2,3],[4,5,6]]", ExpectedResult = "[[1,4],[2,5],[3,6]]")]
+    public object Transpose(params object[] args) => InvokeTest();
 }

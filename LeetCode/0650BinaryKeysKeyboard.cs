@@ -26,5 +26,5 @@ partial class Tests
     [NUnit.Framework.TestCase(5, ExpectedResult = 5)]
     [NUnit.Framework.TestCase(9, ExpectedResult = 6)]
     [NUnit.Framework.TestCase(15, ExpectedResult = 8)]
-    public object MinSteps(int n) => InvokeTest();
+    public object MinSteps(params object[] args) => InvokeTest();
 }

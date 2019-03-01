@@ -56,5 +56,5 @@ partial class Tests
     [NUnit.Framework.TestCase(20631, ExpectedResult = 143)]
     [NUnit.Framework.TestCase(8618135, ExpectedResult = 2935)]
     [NUnit.Framework.TestCase(99999999, ExpectedResult = 9999)]
-    public object BulbSwitch(int n) => InvokeTest();
+    public object BulbSwitch(params object[] args) => InvokeTest();
 }

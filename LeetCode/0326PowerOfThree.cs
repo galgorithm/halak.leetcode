@@ -43,5 +43,5 @@ partial class Tests
     [NUnit.Framework.TestCase(0, ExpectedResult = false)]
     [NUnit.Framework.TestCase(9, ExpectedResult = true)]
     [NUnit.Framework.TestCase(45, ExpectedResult = false)]
-    public object IsPowerOfThree(int n) => InvokeTest();
+    public object IsPowerOfThree(params object[] args) => InvokeTest();
 }

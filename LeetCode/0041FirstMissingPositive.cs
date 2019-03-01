@@ -42,5 +42,5 @@ partial class Tests
     [NUnit.Framework.TestCase(new[] { 7, 8, 9, 11, 12 }, ExpectedResult = 1)]
     [NUnit.Framework.TestCase(new[] { 5, 4, 3, 2, 1 }, ExpectedResult = 6)]
     [NUnit.Framework.TestCase(new[] { 1, 1 }, ExpectedResult = 2)]
-    public object FirstMissingPositive(int[] nums) => InvokeTest();
+    public object FirstMissingPositive(params object[] args) => InvokeTest();
 }

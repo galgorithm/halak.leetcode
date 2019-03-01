@@ -35,5 +35,5 @@ partial class Tests
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/convert-a-number-to-hexadecimal/")]
     [NUnit.Framework.TestCase(26, ExpectedResult = "1a")]
     [NUnit.Framework.TestCase(-1, ExpectedResult = "ffffffff")]
-    public object ToHex(int num) => InvokeTest();
+    public object ToHex(params object[] args) => InvokeTest();
 }

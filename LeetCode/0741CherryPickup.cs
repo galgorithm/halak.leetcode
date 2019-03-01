@@ -80,73 +80,54 @@ partial class Solution
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/cherry-pickup/")]
-    [NUnit.Framework.TestCaseSource(nameof(CherryPickupArgs))]
-    public object CherryPickup(int[,] grid) => InvokeTest();
-
-    static System.Collections.IEnumerable CherryPickupArgs
-    {
-        get
-        {
-            yield return new NUnit.Framework.TestCaseData(new int[,]
-            {
-                { 0, 1, -1 },
-                { 1, 0, -1 },
-                { 1, 1, 1 },
-            }).SetArgDisplayNames("A").Returns(5);
-
-            yield return new NUnit.Framework.TestCaseData(new int[,]
-            {
-                { 0, 1, 0, 1 },
-                { 1, 0, 1, 0 },
-                { 0, 1, 0, 0 },
-                { 1, 0, 0, 0 },
-            }).SetArgDisplayNames("B").Returns(4);
-
-            yield return new NUnit.Framework.TestCaseData(new int[,]
-            {
-                { 1, 1, -1 },
-                { 1, -1, 1 },
-                { -1, 1, 1 },
-            }).SetArgDisplayNames("C").Returns(0);
-
-            yield return new NUnit.Framework.TestCaseData(new int[,]
-            {
-                { 1, 1, 1, 1, -1, -1, -1, 1, 0, 0 },
-                { 1, 0, 0, 0, 1, 0, 0, 0, 1, 0 },
-                { 0, 0, 1, 1, 1, 1, 0, 1, 1, 1 },
-                { 1, 1, 0, 1, 1, 1, 0, -1, 1, 1 },
-                { 0, 0, 0, 0, 1, -1, 0, 0, 1, -1 },
-                { 1, 0, 1, 1, 1, 0, 0, -1, 1, 0 },
-                { 1, 1, 0, 1, 0, 0, 1, 0, 1, -1 },
-                { 1, -1, 0, 1, 0, 0, 0, 1, -1, 1 },
-                { 1, 0, -1, 0, -1, 0, 0, 1, 0, 0 },
-                { 0, 0, -1, 0, 1, 0, 1, 0, 0, 1 },
-            }).SetArgDisplayNames("D").Returns(22);
-
-            yield return new NUnit.Framework.TestCaseData(new int[,]
-            {
-                { 1, 1, 1, 1, 0, 0, 0 },
-                { 0, 0, 0, 1, 0, 0, 0 },
-                { 0, 0, 0, 1, 0, 0, 1 },
-                { 1, 0, 0, 1, 0, 0, 0 },
-                { 0, 0, 0, 1, 0, 0, 0 },
-                { 0, 0, 0, 1, 0, 0, 0 },
-                { 0, 0, 0, 1, 1, 1, 1 },
-            }).SetArgDisplayNames("E").Returns(15);
-
-            yield return new NUnit.Framework.TestCaseData(new int[,]
-            {
-                { +1, -1, +1, +1, +1, +1, +1, +1, -1, +1 },
-                { +1, +1, +1, +1, -1, -1, +1, +1, +1, +1 },
-                { -1, +1, +1, -1, +1, +1, +1, +1, +1, +1 },
-                { +1, +1, -1, +1, -1, +1, +1, +1, +1, +1 },
-                { -1, +1, +1, +1, +1, +1, +1, +1, +1, +1 },
-                { -1, -1, +1, +1, +1, -1, +1, +1, -1, +1 },
-                { +1, +1, +1, +1, +1, +1, +1, -1, +1, +1 },
-                { +1, +1, +1, +1, -1, +1, -1, -1, +1, +1 },
-                { +1, -1, +1, -1, -1, +1, +1, -1, +1, -1 },
-                { -1, +1, -1, +1, -1, +1, +1, +1, +1, +1 },
-            }).SetArgDisplayNames("F").Returns(23);
-        }
-    }
+    [NUnit.Framework.TestCase(@"[
+        [ 0, 1,-1],
+        [ 1, 0,-1],
+        [ 1, 1, 1]
+    ]", ExpectedResult = 5)]
+    [NUnit.Framework.TestCase(@"[
+        [ 0, 1, 0, 1],
+        [ 1, 0, 1, 0],
+        [ 0, 1, 0, 0],
+        [ 1, 0, 0, 0]
+    ]", ExpectedResult = 4)]
+    [NUnit.Framework.TestCase(@"[
+        [ 1, 1,-1],
+        [ 1,-1, 1],
+        [-1, 1, 1]
+    ]", ExpectedResult = 0)]
+    [NUnit.Framework.TestCase(@"[
+        [ 1, 1, 1, 1,-1,-1,-1, 1, 0, 0],
+        [ 1, 0, 0, 0, 1, 0, 0, 0, 1, 0],
+        [ 0, 0, 1, 1, 1, 1, 0, 1, 1, 1],
+        [ 1, 1, 0, 1, 1, 1, 0,-1, 1, 1],
+        [ 0, 0, 0, 0, 1,-1, 0, 0, 1,-1],
+        [ 1, 0, 1, 1, 1, 0, 0,-1, 1, 0],
+        [ 1, 1, 0, 1, 0, 0, 1, 0, 1,-1],
+        [ 1,-1, 0, 1, 0, 0, 0, 1,-1, 1],
+        [ 1, 0,-1, 0,-1, 0, 0, 1, 0, 0],
+        [ 0, 0,-1, 0, 1, 0, 1, 0, 0, 1]
+    ]", ExpectedResult = 22)]
+    [NUnit.Framework.TestCase(@"[
+        [ 1, 1, 1, 1, 0, 0, 0],
+        [ 0, 0, 0, 1, 0, 0, 0],
+        [ 0, 0, 0, 1, 0, 0, 1],
+        [ 1, 0, 0, 1, 0, 0, 0],
+        [ 0, 0, 0, 1, 0, 0, 0],
+        [ 0, 0, 0, 1, 0, 0, 0],
+        [ 0, 0, 0, 1, 1, 1, 1]
+    ]", ExpectedResult = 15)]
+    [NUnit.Framework.TestCase(@"[
+        [ 1,-1, 1, 1, 1, 1, 1, 1,-1, 1],
+        [ 1, 1, 1, 1,-1,-1, 1, 1, 1, 1],
+        [-1, 1, 1,-1, 1, 1, 1, 1, 1, 1],
+        [ 1, 1,-1, 1,-1, 1, 1, 1, 1, 1],
+        [-1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [-1,-1, 1, 1, 1,-1, 1, 1,-1, 1],
+        [ 1, 1, 1, 1, 1, 1, 1,-1, 1, 1],
+        [ 1, 1, 1, 1,-1, 1,-1,-1, 1, 1],
+        [ 1,-1, 1,-1,-1, 1, 1,-1, 1,-1],
+        [-1, 1,-1, 1,-1, 1, 1, 1, 1, 1]
+    ]", ExpectedResult = 23)]
+    public object CherryPickup(params object[] args) => InvokeTest();
 }

@@ -32,5 +32,5 @@ partial class Tests
     [NUnit.Framework.TestCase("aba", ExpectedResult = true)]
     [NUnit.Framework.TestCase("abca" , ExpectedResult = true)]
     [NUnit.Framework.TestCase("abccda" , ExpectedResult = false)]
-    public object ValidPalindrome(string s) => InvokeTest();
+    public object ValidPalindrome(params object[] args) => InvokeTest();
 }

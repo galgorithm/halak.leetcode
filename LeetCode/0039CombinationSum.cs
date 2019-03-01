@@ -46,32 +46,8 @@ partial class Solution
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/combination-sum/")]
-    [NUnit.Framework.TestCaseSource(nameof(CombinationSumArgs))]
-    public object CombinationSum(int[] candidates, int target) => InvokeTest();
-
-    static System.Collections.IEnumerable CombinationSumArgs
-    {
-        get
-        {
-            yield return new NUnit.Framework.TestCaseData(new[] { 2, 3, 6, 7 }, 7).Returns(Unordered2D(new[]
-            {
-                new[] { 7 },
-                new[] { 2, 2, 3 },
-            }));
-
-            yield return new NUnit.Framework.TestCaseData(new[] { 2, 3, 5 }, 8).Returns(Unordered2D(new[]
-            {
-                new[] { 2, 2, 2, 2 },
-                new[] { 2, 3, 3 },
-                new[] { 3, 5 },
-            }));
-
-            yield return new NUnit.Framework.TestCaseData(new[] { 2, 3, 8, 4 }, 6).Returns(Unordered2D(new[]
-            {
-                new[] { 2, 2, 2 },
-                new[] { 2, 4 },
-                new[] { 3, 3 },
-            }));
-        }
-    }
+    [NUnit.Framework.TestCase("[2,3,6,7]", 7, ExpectedResult = "[[7],[2,2,3]]")]
+    [NUnit.Framework.TestCase("[2,3,5]", 8, ExpectedResult = "[[2,2,2,2],[2,3,3],[3,5]]")]
+    [NUnit.Framework.TestCase("[2,3,8,4]", 6, ExpectedResult = "[[2,2,2],[2,4],[3,3]]")]
+    public object CombinationSum(params object[] args) => InvokeTest().IsUnordered();
 }

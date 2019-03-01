@@ -29,5 +29,5 @@ partial class Tests
     [NUnit.Framework.TestCase("Hello", ExpectedResult = "hello")]
     [NUnit.Framework.TestCase("here", ExpectedResult = "here")]
     [NUnit.Framework.TestCase("LOVELY", ExpectedResult = "lovely")]
-    public object ToLowerCase(string str) => InvokeTest();
+    public object ToLowerCase(params object[] args) => InvokeTest();
 }

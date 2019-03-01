@@ -32,5 +32,5 @@ partial class Tests
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/jewels-and-stones/")]
     [NUnit.Framework.TestCase("aA", "aAAbbbb", ExpectedResult = 3)]
     [NUnit.Framework.TestCase("z", "ZZ", ExpectedResult = 0)]
-    public object NumJewelsInStones(string J, string S) => InvokeTest();
+    public object NumJewelsInStones(params object[] args) => InvokeTest();
 }

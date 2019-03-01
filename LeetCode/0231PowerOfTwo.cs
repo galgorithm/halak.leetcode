@@ -11,5 +11,5 @@ partial class Tests
     [NUnit.Framework.TestCase(1, ExpectedResult = true)]
     [NUnit.Framework.TestCase(16, ExpectedResult = true)]
     [NUnit.Framework.TestCase(218, ExpectedResult = false)]
-    public object IsPowerOfTwo(int n) => InvokeTest();
+    public object IsPowerOfTwo(params object[] args) => InvokeTest();
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-partial class Solution
+﻿partial class Solution
 {
     public double FindMedianSortedArrays(int[] nums1, int[] nums2)
     {
@@ -25,7 +22,7 @@ partial class Solution
             return (a + b) / 2.0;
         }
 
-        IEnumerable<int> Zip(int[] a, int[] b)
+        System.Collections.Generic.IEnumerable<int> Zip(int[] a, int[] b)
         {
             var i = 0;
             var k = 0;
@@ -59,5 +56,5 @@ partial class Tests
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/median-of-two-sorted-arrays/")]
     [NUnit.Framework.TestCase(new[] { 1, 3 }, new[] { 2 }, ExpectedResult = 2.0)]
     [NUnit.Framework.TestCase(new[] { 1, 2 }, new[] { 3, 4 }, ExpectedResult = 2.5)]
-    public object FindMedianSortedArrays(int[] nums1, int[] nums2) => new Solution().FindMedianSortedArrays(nums1, nums2);
+    public object FindMedianSortedArrays(params object[] args) => InvokeTest();
 }

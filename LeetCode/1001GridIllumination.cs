@@ -80,38 +80,9 @@ partial class Solution
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/grid-illumination/")]
-    [NUnit.Framework.TestCaseSource(nameof(GridIlluminationArgs))]
-    public object GridIllumination(int N, int[][] lamps, int[][] queries) => InvokeTest();
-
-    static System.Collections.IEnumerable GridIlluminationArgs
-    {
-        get
-        {
-            yield return new NUnit.Framework.TestCaseData(5,
-                new int[][] { new[] { 0, 0 }, new[] { 4, 4 } },
-                new int[][] { new[] { 1, 1 }, new[] { 0, 1 } })
-                .SetArgDisplayNames("Small1")
-                .Returns(new[] { 1, 0 });
-
-            yield return new NUnit.Framework.TestCaseData(5,
-                new int[][] { new[] { 0, 0 }, new[] { 4, 4 } },
-                new int[][] { new[] { 1, 1 }, new[] { 1, 0 } })
-                .SetArgDisplayNames("Small2")
-                .Returns(new[] { 1, 0 });
-
-            yield return new NUnit.Framework.TestCaseData(10,
-                new int[][] { P(3, 9), P(3, 6), P(8, 3), P(5, 3), P(8, 1), P(1, 3), P(5, 9), P(4, 2) },
-                new int[][] { P(1, 9), P(4, 9), P(7, 1), P(6, 9) })
-                .SetArgDisplayNames("Medium")
-                .Returns(new[] { 1, 1, 1, 1 });
-
-            yield return new NUnit.Framework.TestCaseData(1000000000,
-                ReadInt32Array2D("1001GridIllumination001-Lamps.txt"),
-                ReadInt32Array2D("1001GridIllumination001-Queries.txt"))
-                .SetArgDisplayNames("Large1")
-                .Returns(ReadInt32Array("1001GridIllumination001-Answer.txt"));
-
-            int[] P(int x, int y) => new[] { x, y };
-        }
-    }
+    [NUnit.Framework.TestCase(5, "[[0,0],[4,4]]", "[[1,1],[0,1]]", ExpectedResult = "[1,0]")]
+    [NUnit.Framework.TestCase(5, "[[0,0],[4,4]]", "[[1,1],[1,0]]", ExpectedResult = "[1,0]")]
+    [NUnit.Framework.TestCase(5, "[[3,9],[3,6],[8,3],[5,3],[8,1],[1,3],[5,9],[4,2]]", "[[1,9],[4,9],[7,1],[6,9]]", ExpectedResult = "[1,1,1,1]")]
+    [NUnit.Framework.TestCase(1000000000, "1001GridIllumination001-Lamps.json", "1001GridIllumination001-Queries.json", ExpectedResult = "1001GridIllumination001-Answer.json")]
+    public object GridIllumination(params object[] args) => InvokeTest();
 }

@@ -45,16 +45,8 @@ partial class Solution
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/short-encoding-of-words/")]
-    [NUnit.Framework.TestCaseSource(nameof(MinimumLengthEncodingArgs))]
-    public object MinimumLengthEncoding(string[] words) => InvokeTest();
-
-    static System.Collections.IEnumerable MinimumLengthEncodingArgs
-    {
-        get
-        {
-            yield return new NUnit.Framework.TestCaseData((object)new[] { "time", "me", "bell" }).Returns(10);
-            yield return new NUnit.Framework.TestCaseData((object)new[] { "time", "atime", "btime" }).Returns(12);
-            yield return new NUnit.Framework.TestCaseData((object)ReadString("0820ShortEncodingOfWords001.txt")).Returns(13964);
-        }
-    }
+    [NUnit.Framework.TestCase(@"[""time"", ""me"", ""bell""]", ExpectedResult = 10)]
+    [NUnit.Framework.TestCase(@"[""time"", ""atime"", ""btime""]", ExpectedResult = 12)]
+    [NUnit.Framework.TestCase("0820ShortEncodingOfWords001.txt", ExpectedResult = 13964)]
+    public object MinimumLengthEncoding(params object[] args) => InvokeTest();
 }

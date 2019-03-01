@@ -16,5 +16,5 @@ partial class Tests
     [NUnit.Framework.TestCase(new[] { 9, 6, 4, 2, 3, 5, 7, 0, 1 }, ExpectedResult = 8)]
     [NUnit.Framework.TestCase(new[] { 0, 1, 2 }, ExpectedResult = 3)]
     [NUnit.Framework.TestCase(new[] { 1, 2, 3 }, ExpectedResult = 0)]
-    public object MissingNumber(int[] nums) => InvokeTest();
+    public object MissingNumber(params object[] args) => InvokeTest();
 }

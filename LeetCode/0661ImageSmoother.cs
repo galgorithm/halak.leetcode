@@ -81,56 +81,29 @@
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/image-smoother/")]
-    [NUnit.Framework.TestCaseSource(nameof(ImageSmootherArgs))]
-    public object ImageSmoother(int[,] M) => InvokeTest();
-
-    static System.Collections.IEnumerable ImageSmootherArgs
-    {
-        get
-        {
-            yield return new NUnit.Framework.TestCaseData((object)new[,]
-            {
-                { 1 },
-            }).SetArgDisplayNames("A").Returns(new[,]
-            {
-                { 1 },
-            });
-
-            yield return new NUnit.Framework.TestCaseData((object)new[,]
-            {
-                { 2, 3 },
-            }).SetArgDisplayNames("B").Returns(new[,]
-            {
-                { 2, 2 },
-            });
-
-            yield return new NUnit.Framework.TestCaseData((object)new[,]
-            {
-                { 1, 1, 1 },
-                { 1, 0, 1 },
-                { 1, 1, 1 },
-            }).SetArgDisplayNames("C").Returns(new[,]
-            {
-                { 0, 0, 0 },
-                { 0, 0, 0 },
-                { 0, 0, 0 },
-            });
-
-            yield return new NUnit.Framework.TestCaseData((object)new[,]
-            {
-                { 2, 3, 4 },
-                { 5, 6, 7 },
-                { 8, 9, 10 },
-                { 11, 12, 13 },
-                { 14, 15, 16 },
-            }).SetArgDisplayNames("D").Returns(new[,]
-            {
-                { 4, 4, 5 },
-                { 5, 6, 6 },
-                { 8, 9, 9 },
-                { 11, 12, 12 },
-                { 13, 13, 14 },
-            });
-        }
-    }
+    [NUnit.Framework.TestCase(@"[[1]]", ExpectedResult = @"[[1]]")]
+    [NUnit.Framework.TestCase(@"[[2,3]]", ExpectedResult = @"[[2,2]]")]
+    [NUnit.Framework.TestCase(@"[
+        [1,1,1],
+        [1,0,1],
+        [1,1,1]
+    ]", ExpectedResult = @"[
+        [0,0,0],
+        [0,0,0],
+        [0,0,0]
+    ]")]
+    [NUnit.Framework.TestCase(@"[
+        [2,3,4],
+        [5,6,7],
+        [8,9,10],
+        [11,12,13],
+        [14,15,16]
+    ]", ExpectedResult = @"[
+        [4,4,5],
+        [5,6,6],
+        [8,9,9],
+        [11,12,12],
+        [13,13,14]
+    ]")]
+    public object ImageSmoother(params object[] args) => InvokeTest();
 }

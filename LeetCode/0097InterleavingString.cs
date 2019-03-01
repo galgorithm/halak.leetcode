@@ -48,5 +48,5 @@ partial class Tests
     [NUnit.Framework.TestCase("aabcc", "dbbca", "aadbbbaccc", ExpectedResult = false)]
     [NUnit.Framework.TestCase("a", "b", "a", ExpectedResult = false)]
     [NUnit.Framework.TestCase("aabc", "abad", "aabcbaad", ExpectedResult = false)]
-    public object IsInterleave(string s1, string s2, string s3) => InvokeTest();
+    public object IsInterleave(params object[] args) => InvokeTest();
 }

@@ -21,5 +21,5 @@ partial class Tests
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/find-the-difference/")]
     [NUnit.Framework.TestCase("abcd", "abcde", ExpectedResult = 'e')]
     [NUnit.Framework.TestCase("zxcv", "azxcv", ExpectedResult = 'a')]
-    public object FindTheDifference(string s, string t) => InvokeTest();
+    public object FindTheDifference(params object[] args) => InvokeTest();
 }
