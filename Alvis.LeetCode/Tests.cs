@@ -1,45 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 
 [TestFixture]
 partial class Tests
 {
-    private static string projectPath = null;
-
-    static string ProjectPath
-    {
-        get
-        {
-            return System.Threading.LazyInitializer.EnsureInitialized(ref projectPath, () =>
-            {
-                var path = Environment.CurrentDirectory;
-                while (Exists(path) == false)
-                    path = Path.GetDirectoryName(path);
-
-                return path;
-
-                bool Exists(string directoryPath)
-                {
-                    if (string.IsNullOrEmpty(directoryPath))
-                        throw new ArgumentNullException(nameof(directoryPath));
-
-                    var enumerator = Directory.EnumerateFiles(directoryPath, "*.csproj", SearchOption.TopDirectoryOnly).GetEnumerator();
-                    try
-                    {
-                        return enumerator.MoveNext();
-                    }
-                    finally
-                    {
-                        enumerator.Dispose();
-                    }
-                }
-            });
-        }
-    }
-
     static Internal.TestResult InvokeTest()
     {
         var currentTest = TestContext.CurrentContext?.Test;
@@ -59,7 +25,7 @@ partial class Tests
         {
             var argument = originalArguments[i];
             if (parameters[i].ParameterType.IsInstanceOfType(argument) == false)
-                argument = Internal.SmartConvert(argument, parameters[i].ParameterType);
+                argument = Alvis.TestHelper.SmartConvert(argument, parameters[i].ParameterType);
 
             convertedArgs[i] = argument;
         }
@@ -69,33 +35,6 @@ partial class Tests
 
     private static class Internal
     {
-        internal static object SmartConvert(object obj, Type targetType)
-        {
-            var s = obj.ToString();
-            if (s.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
-            {
-                var path = Path.Combine(ProjectPath, s);
-                if (File.Exists(path))
-                    s = File.ReadAllText(path);
-            }
-            else if (s.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
-            {
-                var path = Path.Combine(ProjectPath, s);
-                if (File.Exists(path))
-                {
-                    var lines = File.ReadAllLines(path);
-
-                    var elementType = targetType.GetElementType();
-                    var array = Array.CreateInstance(elementType, lines.Length);
-                    for (var i = 0; i < array.Length; i++)
-                        array.SetValue(Convert.ChangeType(lines[i], elementType), i);
-                    return array;
-                }
-            }
-
-            return Newtonsoft.Json.JsonConvert.DeserializeObject(s, targetType);
-        }
-
         internal static object Sorted(object obj)
         {
             if (obj is System.Collections.IEnumerable enumerable)
@@ -150,7 +89,7 @@ partial class Tests
                 var left = obj;
                 var right = other;
                 if (left is string == false && right is string)
-                    right = SmartConvert(right, left.GetType());
+                    right = Alvis.TestHelper.SmartConvert(right, left.GetType());
 
                 if (comparison.HasFlag(ObjectComparison.Unordered))
                 {

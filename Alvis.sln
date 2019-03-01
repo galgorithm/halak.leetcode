@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alvis", "Alvis.LeetCode\Alvis.LeetCode.csproj", "{CC33323D-863F-49AB-B751-4DBBC49DB108}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alvis.LeetCode", "Alvis.LeetCode\Alvis.LeetCode.csproj", "{CC33323D-863F-49AB-B751-4DBBC49DB108}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alvis.Acmicpc", "Alvis.Acmicpc\Alvis.Acmicpc.csproj", "{ADD50BCB-9586-4C47-97E5-BF4F00BE7D08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alvis", "Alvis\Alvis.csproj", "{C5449B55-D70B-443E-A47E-FCF3EAE78F83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{CC33323D-863F-49AB-B751-4DBBC49DB108}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC33323D-863F-49AB-B751-4DBBC49DB108}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC33323D-863F-49AB-B751-4DBBC49DB108}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADD50BCB-9586-4C47-97E5-BF4F00BE7D08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADD50BCB-9586-4C47-97E5-BF4F00BE7D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADD50BCB-9586-4C47-97E5-BF4F00BE7D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADD50BCB-9586-4C47-97E5-BF4F00BE7D08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5449B55-D70B-443E-A47E-FCF3EAE78F83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5449B55-D70B-443E-A47E-FCF3EAE78F83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5449B55-D70B-443E-A47E-FCF3EAE78F83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5449B55-D70B-443E-A47E-FCF3EAE78F83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
