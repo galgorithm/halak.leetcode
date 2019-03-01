@@ -35,8 +35,8 @@
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/evaluate-reverse-polish-notation/")]
-    [NUnit.Framework.TestCase(@"[""2"",""1"",""+"",""3"",""*""]", ExpectedResult = 9)]
-    [NUnit.Framework.TestCase(@"[""4"",""13"",""5"",""/"",""+""]", ExpectedResult = 6)]
-    [NUnit.Framework.TestCase(@"[""10"",""6"",""9"",""3"",""+"",""-11"",""*"",""/"",""*"",""17"",""+"",""5"",""+""]", ExpectedResult = 22)]
+    [NUnit.Framework.TestCase("['2','1','+','3','*']", ExpectedResult = 9)]
+    [NUnit.Framework.TestCase("['4','13','5','/','+']", ExpectedResult = 6)]
+    [NUnit.Framework.TestCase("['10','6','9','3','+','-11','*','/','*','17','+','5','+']", ExpectedResult = 22)]
     public object EvalRPN(params object[] args) => InvokeTest();
 }

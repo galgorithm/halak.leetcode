@@ -44,7 +44,7 @@
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/median-of-two-sorted-arrays/")]
-    [NUnit.Framework.TestCase(new[] { 1, 3 }, new[] { 2 }, ExpectedResult = 2.0)]
-    [NUnit.Framework.TestCase(new[] { 1, 2 }, new[] { 3, 4 }, ExpectedResult = 2.5)]
+    [NUnit.Framework.TestCase("[1,3]", "[2]", ExpectedResult = 2.0)]
+    [NUnit.Framework.TestCase("[1,2]", "[3,4]", ExpectedResult = 2.5)]
     public object FindMedianSortedArrays(params object[] args) => InvokeTest();
 }

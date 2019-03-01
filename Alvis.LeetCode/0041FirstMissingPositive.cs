@@ -37,10 +37,10 @@
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/first-missing-positive/")]
-    [NUnit.Framework.TestCase(new[] { 1, 2, 0 }, ExpectedResult = 3)]
-    [NUnit.Framework.TestCase(new[] { 3, 4, -1, 1 }, ExpectedResult = 2)]
-    [NUnit.Framework.TestCase(new[] { 7, 8, 9, 11, 12 }, ExpectedResult = 1)]
-    [NUnit.Framework.TestCase(new[] { 5, 4, 3, 2, 1 }, ExpectedResult = 6)]
-    [NUnit.Framework.TestCase(new[] { 1, 1 }, ExpectedResult = 2)]
+    [NUnit.Framework.TestCase("[1,2,0]", ExpectedResult = 3)]
+    [NUnit.Framework.TestCase("[3,4,-1,1]", ExpectedResult = 2)]
+    [NUnit.Framework.TestCase("[7,8,9,11,12]", ExpectedResult = 1)]
+    [NUnit.Framework.TestCase("[5,4,3,2,1]", ExpectedResult = 6)]
+    [NUnit.Framework.TestCase("[1,1]", ExpectedResult = 2)]
     public object FirstMissingPositive(params object[] args) => InvokeTest();
 }

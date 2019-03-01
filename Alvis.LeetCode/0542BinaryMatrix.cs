@@ -73,7 +73,7 @@ partial class Solution
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/01-matrix/")]
-    [NUnit.Framework.TestCase(@"[[0,0,0],[0,1,0],[1,1,1]]", ExpectedResult = "[[0,0,0],[0,1,0],[1,2,1]]")]
-    [NUnit.Framework.TestCase(@"[[0],[0],[0],[0],[0],[1],[1],[1],[1]]", ExpectedResult = @"[[0],[0],[0],[0],[0],[1],[2],[3],[4]]")]
+    [NUnit.Framework.TestCase("[[0,0,0],[0,1,0],[1,1,1]]", ExpectedResult = "[[0,0,0],[0,1,0],[1,2,1]]")]
+    [NUnit.Framework.TestCase("[[0],[0],[0],[0],[0],[1],[1],[1],[1]]", ExpectedResult = "[[0],[0],[0],[0],[0],[1],[2],[3],[4]]")]
     public object UpdateMatrix(params object[] args) => InvokeTest();
 }

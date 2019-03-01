@@ -45,8 +45,8 @@ partial class Solution
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/short-encoding-of-words/")]
-    [NUnit.Framework.TestCase(@"[""time"", ""me"", ""bell""]", ExpectedResult = 10)]
-    [NUnit.Framework.TestCase(@"[""time"", ""atime"", ""btime""]", ExpectedResult = 12)]
+    [NUnit.Framework.TestCase("['time', 'me', 'bell']", ExpectedResult = 10)]
+    [NUnit.Framework.TestCase("['time', 'atime', 'btime']", ExpectedResult = 12)]
     [NUnit.Framework.TestCase("0820ShortEncodingOfWords001.txt", ExpectedResult = 13964)]
     public object MinimumLengthEncoding(params object[] args) => InvokeTest();
 }

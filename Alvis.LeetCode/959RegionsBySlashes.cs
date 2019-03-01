@@ -121,48 +121,48 @@ partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/regions-cut-by-slashes/")]
     [NUnit.Framework.TestCase(@"[
-        "" /"",
-        ""/ ""
+        ' /',
+        '/ '
     ]", ExpectedResult = 2)]
     [NUnit.Framework.TestCase(@"[
-        "" /"",
-        ""  ""
+        ' /',
+        '  '
     ]", ExpectedResult = 1)]
     [NUnit.Framework.TestCase(@"[
-        ""\\/"",
-        ""/\\""
+        '\/',
+        '/\'
     ]", ExpectedResult = 4)]
     [NUnit.Framework.TestCase(@"[
-        ""/\\"",
-        ""\\/""
+        '/\',
+        '\/'
     ]", ExpectedResult = 5)]
     [NUnit.Framework.TestCase(@"[
-        ""//"",
-        ""/ ""
+        '//',
+        '/ '
     ]", ExpectedResult = 3)]
     [NUnit.Framework.TestCase(@"[
-        ""\\\\\\"",
-        "" \\\\"",
-        ""\\\\ ""
+        '\\\',
+        ' \\',
+        '\\ '
     ]", ExpectedResult = 4)]
     [NUnit.Framework.TestCase(@"[
-        ""\\\\  /\\"",
-        ""\\\\/\\\\\\"",
-        ""/\\//\\/"",
-        ""/\\ // "",
-        ""//\\\\//"",
-        ""\\//  \\""
+        '\\  /\',
+        '\\/\\\',
+        '/\//\/',
+        '/\ // ',
+        '//\\//',
+        '\//  \'
     ]", ExpectedResult = 7)]
     [NUnit.Framework.TestCase(@"[
-        ""\\//\\/\\//\\"",
-        ""\\  /\\/ //"",
-        ""//\\/ /\\\\ "",
-        ""\\\\\\//\\///"",
-        ""\\//// ///"",
-        ""\\   / \\\\\\"",
-        ""\\ /\\ /\\/\\"",
-        ""/\\\\//  \\/"",
-        "" ///\\/\\\\/""
+        '\//\/\//\',
+        '\  /\/ //',
+        '//\/ /\\ ',
+        '\\\//\///',
+        '\//// ///',
+        '\   / \\\',
+        '\ /\ /\/\',
+        '/\\//  \/',
+        ' ///\/\\/'
     ]", ExpectedResult = 18)]
     public object RegionsBySlashes(params object[] args) => InvokeTest();
 }

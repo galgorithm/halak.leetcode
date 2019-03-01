@@ -1,5 +1,4 @@
 ﻿using Interval = EraseOverlapIntervalsInterval;
-using System.Linq;
 
 partial class Solution
 {
@@ -31,15 +30,12 @@ partial class Solution
     }
 }
 
-[Newtonsoft.Json.JsonArray]
 sealed class EraseOverlapIntervalsInterval
 {
     public int start;
     public int end;
     public EraseOverlapIntervalsInterval() { start = 0; end = 0; }
     public EraseOverlapIntervalsInterval(int s, int e) { start = s; end = e; }
-    [Newtonsoft.Json.JsonConstructor]
-    public EraseOverlapIntervalsInterval(System.Collections.Generic.List<object> values) : this(System.Convert.ToInt32(values[0]), System.Convert.ToInt32(values[1])) { }
 
     public override string ToString() => $"[{start}, {end})";
 }

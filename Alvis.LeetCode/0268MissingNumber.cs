@@ -12,9 +12,9 @@
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/missing-number/")]
-    [NUnit.Framework.TestCase(new[] { 3, 0, 1 }, ExpectedResult = 2)]
-    [NUnit.Framework.TestCase(new[] { 9, 6, 4, 2, 3, 5, 7, 0, 1 }, ExpectedResult = 8)]
-    [NUnit.Framework.TestCase(new[] { 0, 1, 2 }, ExpectedResult = 3)]
-    [NUnit.Framework.TestCase(new[] { 1, 2, 3 }, ExpectedResult = 0)]
+    [NUnit.Framework.TestCase("[3,0,1]", ExpectedResult = 2)]
+    [NUnit.Framework.TestCase("[9,6,4,2,3,5,7,0,1]", ExpectedResult = 8)]
+    [NUnit.Framework.TestCase("[0,1,2]", ExpectedResult = 3)]
+    [NUnit.Framework.TestCase("[1,2,3]", ExpectedResult = 0)]
     public object MissingNumber(params object[] args) => InvokeTest();
 }

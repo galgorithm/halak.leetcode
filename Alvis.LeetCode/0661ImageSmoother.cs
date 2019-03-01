@@ -81,8 +81,8 @@
 partial class Tests
 {
     [NUnit.Framework.Test(Description = "https://leetcode.com/problems/image-smoother/")]
-    [NUnit.Framework.TestCase(@"[[1]]", ExpectedResult = @"[[1]]")]
-    [NUnit.Framework.TestCase(@"[[2,3]]", ExpectedResult = @"[[2,2]]")]
+    [NUnit.Framework.TestCase("[[1]]", ExpectedResult = "[[1]]")]
+    [NUnit.Framework.TestCase("[[2,3]]", ExpectedResult = "[[2,2]]")]
     [NUnit.Framework.TestCase(@"[
         [1,1,1],
         [1,0,1],
