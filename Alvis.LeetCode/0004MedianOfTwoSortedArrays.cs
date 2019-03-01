@@ -11,9 +11,7 @@
         }
 
         if (total % 2 == 1)
-        {
             return enumerator.Current;
-        }
         else
         {
             var a = enumerator.Current;
@@ -29,24 +27,16 @@
             while (i < a.Length && k < b.Length)
             {
                 if (a[i] < b[k])
-                {
                     yield return a[i++];
-                }
                 else
-                {
                     yield return b[k++];
-                }
             }
 
             while (i < a.Length)
-            {
                 yield return a[i++];
-            }
 
             while (k < b.Length)
-            {
                 yield return b[k++];
-            }
         }
     }
 }
