@@ -3,7 +3,7 @@
     public int[][] Transpose(int[][] A)
     {
         var matrix = new int[A[0].Length][];
-        
+
         for (var row = 0; row < matrix.Length; row++)
         {
             matrix[row] = new int[A.Length];
@@ -25,7 +25,7 @@ partial class Tests
     {
         get
         {
-            yield return new NUnit.Framework.TestCaseData((object)new int[][] 
+            yield return new NUnit.Framework.TestCaseData((object)new int[][]
             {
                 new[] {1, 2, 3},
                 new[] {4, 5, 6},
@@ -37,7 +37,7 @@ partial class Tests
                 new[] {3, 6, 9},
             });
 
-            yield return new NUnit.Framework.TestCaseData((object)new int[][] 
+            yield return new NUnit.Framework.TestCaseData((object)new int[][]
             {
                 new[] {1, 2, 3},
                 new[] {4, 5, 6},

@@ -65,7 +65,7 @@ partial class Tests
                 .SetArgDisplayNames("D")
                 .Returns(1);
 
-            yield return new NUnit.Framework.TestCaseData((object)ReadInt32Array2D("0435EraseOverlapIntervals001.txt").Select(it => Range(it[0], it[1])).ToArray())
+            yield return new NUnit.Framework.TestCaseData((object)ReadInt32Array2D("0435NonOverlappingIntervals001.txt").Select(it => Range(it[0], it[1])).ToArray())
                 .SetArgDisplayNames("E")
                 .Returns(187);
 

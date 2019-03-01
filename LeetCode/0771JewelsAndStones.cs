@@ -5,7 +5,7 @@
         var jewelMask = 0L;
         for (var i = 0; i < J.Length; i++)
             jewelMask |= 1L << ToIndex(J[i]);
-        
+
         var count = 0;
         for (var i = 0; i < S.Length; i++)
         {
@@ -14,8 +14,8 @@
         }
 
         return count;
-        
-        int ToIndex(char c) 
+
+        int ToIndex(char c)
         {
             if ('A' <= c && c <= 'Z')
                 return c - 'A';
