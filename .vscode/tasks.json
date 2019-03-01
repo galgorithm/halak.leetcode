@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "test",
-                "${workspaceFolder}/LeetCode/LeetCode.csproj"
+                "${workspaceFolder}/Alvis.LeetCode/Alvis.LeetCode.csproj"
             ],
             "group": {
                 "kind": "test",
