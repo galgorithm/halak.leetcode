@@ -148,6 +148,8 @@ namespace Alvis
             {
                 if (objectType.IsArray || objectType.IsAbstract || objectType.IsEnum || objectType.IsInterface)
                     return null;
+                if (Type.GetTypeCode(objectType) != TypeCode.Object)
+                    return null;
 
                 return cachedConstructors.GetOrAdd(objectType, (type) =>
                 {
