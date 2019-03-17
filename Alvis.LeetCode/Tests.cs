@@ -4,7 +4,7 @@ using NUnit.Framework;
 using NUnit.Framework.Constraints;
 
 [TestFixture]
-partial class Tests
+partial class Tests : Alvis.TestsBase
 {
     static Internal.TestResult InvokeTest()
     {
